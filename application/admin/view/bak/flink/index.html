@@ -1,0 +1,80 @@
+
+
+<div class="pageHeader">
+    <form rel="pagerForm" onsubmit="return navTabSearch(this);" method="post">
+
+	<div class="searchBar">
+		<table class="searchContent">
+            <tr>
+                <td>搜索：</td>
+				<td>
+                    链接名：<input type="text" name="webname" size="8" value="111smarty.post.webname}>"/>
+                </td>
+                <td>
+                    描述：<input type="text" name="descr" size="8" value="111smarty.post.descr}>"/>
+                </td>
+                <td>
+                    <div class="buttonActive"><div class="buttonContent"><button type="submit">检索</button></div></div>
+                </td>
+			</tr>
+		</table>
+	</div>
+	</form>
+</div>
+<div class="pageContent">
+	<div class="panelBar">
+		<ul class="toolBar">
+			<li><a class="add" href="__URL__/add/navTabId/listflink" target="dialog"><span>添加</span></a></li>
+			<li><a class="delete" href="__URL__/delete/id/{sid_user}/navTabId/listflink" target="ajaxTodo" title="确定要删除吗?"><span>删除</span></a></li>
+			<li><a class="edit" href="__URL__/edit/id/{sid_user}/navTabId/listflink" target="dialog"><span>修改</span></a></li>
+            <li class="line">line</li>
+            <li><a class="icon" href="javascript:navTabPageBreak()"><span>刷新</span></a></li>
+            <!--<li><a class="icon" href="demo/common/dwz-team.xls" target="dwzExport" targetType="navTab" title="实要导出这些记录吗?"><span>导出EXCEL</span></a></li>-->
+		</ul>
+	</div>
+	<table class="table" width="100%" layoutH="138">
+		<thead>
+			<tr>
+				<th align="center" width="40" orderField="id" 333if 222smarty.request._order='id'}>class=111smarty.request._sort}>333/if}>>ID号</th>
+                <th align="center" width="40">链接名</th>
+                <th align="center" width="40">网站URL</th>
+                <th align="center" width="40">站长邮箱</th>
+                <th align="center" width="40">链接描述</th>
+                <th align="center" width="40">添加时间</th>
+                <th align="center" width="40">链接状态</th>
+			</tr>
+		</thead>
+        <tbody>
+            333foreach 222list as 222vo}>
+            <tr target="sid_user" rel="111vo.id}>">
+                <td>111vo.id}></td>
+                <td>111vo.webname}></td>
+                <td>111vo.url}></td>
+                <td>111vo.email}></td>
+                <td>111vo.descr}></td>
+                <td>111vo.addtime|date_format:"%Y-%m-%d %H:%M:%S"}></td>
+                <td>
+                    333if 222vo.status == 1}>新添加333else if 222vo.status == 2}>在用333else}>废弃333/if}>
+                </td>
+            </tr>
+            333/foreach}>
+
+		</tbody>
+	</table>
+	<div class="panelBar">
+		<div class="pages">
+			<span>显示</span>
+			<select class="combox" name="numPerPage" onchange="navTabPageBreak({numPerPage:this.value})">
+                <option value="10" 333if 222numPerPage == 10}>selected333/if}>>10</option>
+                <option value="15" 333if 222numPerPage == 15}>selected333/if}>>15</option>
+                <option value="20" 333if 222numPerPage == 20}>selected333/if}>>20</option>
+                <option value="25" 333if 222numPerPage == 25}>selected333/if}>>25</option>
+                <option value="30" 333if 222numPerPage == 30}>selected333/if}>>30</option>
+			</select>
+            <span>条，共111totalCount}>条</span>
+		</div>
+
+        <div class="pagination" targetType="navTab" totalCount="111totalCount}>" numPerPage="111numPerPage}>" pageNumShown="10" currentPage="111currentPage}>"></div>
+
+	</div>
+</div>
